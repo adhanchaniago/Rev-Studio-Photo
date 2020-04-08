@@ -2,7 +2,7 @@
 // deklarasi parameter koneksi database
 $server   = "localhost";
 $username = "root";
-$password = "";
+$password = "mysql";
 $database = "shafa_studio";
 
 // koneksi database

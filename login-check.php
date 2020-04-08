@@ -8,7 +8,7 @@ $password = md5(mysqli_real_escape_string($mysqli, stripslashes(strip_tags(htmls
 
 // ambil data dari tabel konsumen untuk pengecekan berdasarkan inputan email dan password
 $query = mysqli_query($mysqli, "SELECT * FROM tbl_konsumen WHERE email='$email' AND password='$password'")
-								or die('Ada kesalahan pada query login: '.mysqli_error($mysqli));
+	or die('Ada kesalahan pada query login: ' . mysqli_error($mysqli));
 $rows  = mysqli_num_rows($query);
 
 // jika data ada, jalankan perintah untuk membuat session
@@ -20,7 +20,7 @@ if ($rows > 0) {
 	$_SESSION['user_email']         = $data['email'];
 	$_SESSION['user_password']      = $data['password'];
 	$_SESSION['nama_konsumen'] = $data['nama_konsumen'];
-	
+
 	// lalu alihkan ke halaman admin
 	header("Location: main.php?page=home");
 }
@@ -31,4 +31,3 @@ else {
 	echo "<script type='text/javascript'>alert('Gagal Login!, email atau password salah, cek kembali email dan password Anda.');</script>
 		  <meta http-equiv='refresh' content='0; url=contact.html'>";
 }
-?>
