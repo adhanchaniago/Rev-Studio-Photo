@@ -204,9 +204,9 @@
                                         <tr>
                                             <td>5R (3bh)+Album</td>
                                             <td></td>
-                                            <td> <input type="file" id="gambar" name="fupload" />
-                                            <td><input type="file" id="gambar_diamon" name="fuploadd" />
-                                            <td><input type="file" name="gambar" />
+                                            <td><input type="file" id="gambar" name="fupload" /></td>
+                                            <td><input type="file" id="gambar_diamon" name="fuploadd" /></td>
+                                            <td><input type="file" name="gambar" /></td>    
                                         </tr>
 
                                         <tr>

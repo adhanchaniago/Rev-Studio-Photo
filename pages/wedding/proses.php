@@ -16,32 +16,32 @@ else {
     if (isset($_POST['wedding'])) {
         // ambil data hasil submit dari form
 
-        echo $nama        = mysqli_real_escape_string($mysqli, trim($_POST['nama']));
-        echo "<br>";
-        echo $jurusan     = mysqli_real_escape_string($mysqli, trim($_POST['jurusan']));
-        echo "<br>";
-        echo $wa          = mysqli_real_escape_string($mysqli, trim($_POST['wa']));
-        echo "<br>";
-        echo $paket       = mysqli_real_escape_string($mysqli, trim($_POST['paket']));
-        echo "<br>";
-        echo $fs_jw       = mysqli_real_escape_string($mysqli, trim($_POST['fs_jw']));
-        echo "<br>";
-        echo $fs_kk       = mysqli_real_escape_string($mysqli, trim($_POST['fs_kk']));
-        echo "<br>";
-        echo $fkb         = mysqli_real_escape_string($mysqli, trim($_POST['fkb']));
-        echo "<br>";
-        echo $fkk_jw      = mysqli_real_escape_string($mysqli, trim($_POST['fkk_jw']));
-        echo "<br>";
-        echo $fkk_kk      = mysqli_real_escape_string($mysqli, trim($_POST['fkk_kk']));
-        echo "<br>";
-        echo $fdt         = mysqli_real_escape_string($mysqli, trim($_POST['fdt']));
-        echo "<br>";
-        echo $fdo_jw      = mysqli_real_escape_string($mysqli, trim($_POST['fdo_jw']));
-        echo "<br>";
-        echo $fdo_kk      = mysqli_real_escape_string($mysqli, trim($_POST['fdo_kk']));
-        echo "<br>";
-        echo $dll         = mysqli_real_escape_string($mysqli, trim($_POST['dll']));
-        echo "<br>";
+        // echo $nama        = mysqli_real_escape_string($mysqli, trim($_POST['nama']));
+        // echo "<br>";
+        // echo $jurusan     = mysqli_real_escape_string($mysqli, trim($_POST['jurusan']));
+        // echo "<br>";
+        // echo $wa          = mysqli_real_escape_string($mysqli, trim($_POST['wa']));
+        // echo "<br>";
+        // echo $paket       = mysqli_real_escape_string($mysqli, trim($_POST['paket']));
+        // echo "<br>";
+        // echo $fs_jw       = mysqli_real_escape_string($mysqli, trim($_POST['fs_jw']));
+        // echo "<br>";
+        // echo $fs_kk       = mysqli_real_escape_string($mysqli, trim($_POST['fs_kk']));
+        // echo "<br>";
+        // echo $fkb         = mysqli_real_escape_string($mysqli, trim($_POST['fkb']));
+        // echo "<br>";
+        // echo $fkk_jw      = mysqli_real_escape_string($mysqli, trim($_POST['fkk_jw']));
+        // echo "<br>";
+        // echo $fkk_kk      = mysqli_real_escape_string($mysqli, trim($_POST['fkk_kk']));
+        // echo "<br>";
+        // echo $fdt         = mysqli_real_escape_string($mysqli, trim($_POST['fdt']));
+        // echo "<br>";
+        // echo $fdo_jw      = mysqli_real_escape_string($mysqli, trim($_POST['fdo_jw']));
+        // echo "<br>";
+        // echo $fdo_kk      = mysqli_real_escape_string($mysqli, trim($_POST['fdo_kk']));
+        // echo "<br>";
+        // echo $dll         = mysqli_real_escape_string($mysqli, trim($_POST['dll']));
+        // echo "<br>";
         echo $nama_file   = $_FILES['fupload']['name'];
         echo "<br>";
         echo $ukuran_file = $_FILES['fupload']['size'];
@@ -64,13 +64,40 @@ else {
         $extension          = array_pop($file);
         if (in_array($extension, $allowed_extensions)) {
             // Jika tipe file yang diupload sesuai dengan allowed_extensions, lakukan :
-            if ($ukuran_file <= 1000000) { // Cek apakah ukuran file yang diupload kurang dari sama dengan 1MB
-                // Jika ukuran file kurang dari sama dengan 1MB, lakukan :                    // Proses upload
+            if ($ukuran_file <= 100000000) { // Cek apakah ukuran file yang diupload kurang dari sama dengan 100 MB
+                // Jika ukuran file kurang dari sama dengan 100MB, lakukan :                    // Proses upload
                 if (move_uploaded_file($tmp_file, $path)) { // Cek apakah gambar berhasil diupload atau tidak
                     // Jika gambar berhasil diupload, Lakukan :                         // perintah query untuk menyimpan data ke tabel barang
-                    $query = mysqli_query($mysqli, "INSERT INTO tbl_konsumen_upload(nama,jurusan,wa,paket,fs_jw,fs_kk,fkb,fkk_jw,fkk_kk,fdt,fdo_jw,fdo_kk,dll,gambar)
-										VALUES('$nama','$jurusan','$wa','$paket','$fs_jw','$fs_kk','$fkb','$fkk_jw','$fkk_kk','$fdt','$fdo_jw','$fdo_kk','$dll','$nama_file')")
-                        or die('Ada kesalahan pada query insert : ' . mysqli_error($mysqli));
+                    $sql = "INSERT INTO tbl_konsumen_upload (   nama,
+                                                                jurusan,
+                                                                wa,
+                                                                paket,
+                                                                fs_jw,
+                                                                fs_kk,
+                                                                fkb,
+                                                                fkk_jw,
+                                                                fkk_kk,
+                                                                fdt,
+                                                                fdo_jw,
+                                                                fdo_kk,
+                                                                dll,
+                                                                gambar)
+                                                                VALUES(
+                                                                    '$nama',
+                                                                    '$jurusan',
+                                                                    '$wa',
+                                                                    '$paket',
+                                                                    '$fs_jw',
+                                                                    '$fs_kk',
+                                                                    '$fkb',
+                                                                    '$fkk_jw',
+                                                                    '$fkk_kk',
+                                                                    '$fdt',
+                                                                    '$fdo_jw',
+                                                                    '$fdo_kk',
+                                                                    '$dll',
+                                                                    '$nama_file')";
+                    $query = mysqli_query($mysqli, $sql) or die('Ada kesalahan pada query insert : ' . mysqli_error($mysqli));
 
                     // cek query
                     if ($query) {
