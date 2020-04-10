@@ -1,3 +1,4 @@
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Page Heading/Breadcrumbs -->
 <div class="row">
     <div class="col-lg-12">
@@ -14,7 +15,6 @@
                 </ol>
             </div>
         </div>
-
 
 
         <div class="row">
@@ -98,6 +98,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Nama dan Gelar</label>
                                 <div class="col-sm-5">
+                                    <input type="hidden" class="form-control" value="<?php echo $_SESSION['id_konsumen'] ?>" name="id_konsumen" required>
                                     <input type="text" class="form-control" name="nama" autocomplete="off" onKeyPress="return goodchars(event,'abcdefghijklmnopqrstuvwxyz., ',this)" required>
                                 </div>
                             </div>
@@ -119,11 +120,135 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Paket Yang Diambil</label>
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" name="paket" autocomplete="off" onKeyPress="return goodchars(event,'abcdefghijklmnopqrstuvwxyz., ',this)" required>
+                                    <!-- <input type="text" class="form-control" name="paket" autocomplete="off" onKeyPress="return goodchars(event,'abcdefghijklmnopqrstuvwxyz., ',this)" required> -->
+                                    <select onchange="pilih()" class="form-control" name="paket" id="paketId">
+                                        <option value="0">Pilih</option>
+                                        <option value="Shapire">Shapire</option>
+                                        <option value="Emerald">Emerald</option>
+                                        <option value="Diamond">Diamond</option>
+                                        <option value="Gold">Gold</option>
+                                    </select>
                                 </div>
                             </div>
 
+                            <div id="Content"></div>
 
+                            <script>
+                                function pilih() {
+                                    let kosong = '';
+                                    $(document).ready(function() {
+                                        let paket = document.getElementById('paketId').value;
+                                        if (paket == "Shapire") {
+                                            $('#Content').html('');
+                                            $('#Content').append(`
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">10 R+</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="file" class="form-control" name="10R" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">16 R+</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="file" class="form-control" name="16R" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            `);
+                                        }
+                                        if (paket == "Emerald") {
+                                            $('#Content').html('');
+                                            $('#Content').append(`
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">5R (3bh)+Album</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="file" class="form-control" name="5R[]" multiple>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">10 R+</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="file" class="form-control" name="10R" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">16 R+</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="file" class="form-control" name="16R" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            `);
+                                        }
+                                        if (paket == "Diamond") {
+                                            $('#Content').html('');
+                                            $('#Content').append(`
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">5R (3bh)+Album</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="file" class="form-control" name="5R[]" multiple>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">10 R+</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="file" class="form-control" name="10R" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">16 R+</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="file" class="form-control" name="16R" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">20 R+</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="file" class="form-control" name="20R" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            `);
+                                        }
+                                        if (paket == "Gold") {
+                                            $('#Content').html('');
+                                            $('#Content').append(`
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">5R (3bh) + Album</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="file" class="form-control" name="5R[]" multiple>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">10 R+</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="file" class="form-control" name="10R" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">16 R+</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="file" class="form-control" name="16R" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">20 R+</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="file" class="form-control" name="20R" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">24 R+</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="file" class="form-control" name="24R" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            `);
+                                        }
+
+                                        if (paket == 0) {
+                                            $('#Content').html('');
+                                        }
+                                    });
+                                }
+                            </script>
 
 
                             <div class="form-group">
@@ -164,85 +289,12 @@
                                 <input type="checkbox" name="dll" value="LAIN - LAIN" /> LAIN - LAIN</p>
                             </div>
 
-
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-
                             <div class="form-group">
                                 <label class="col-sm-10 control-label"><i>"Foto Pilihan : Isi pilihan dibawah ini dengan file foto pilihan anda sesuai dengan paket yang anda pilih"</i></label>
                             </div>
 
 
                             <div>
-                                <table id="dynamic-table" class="table table-striped table-bordered table-hover" align="center">
-                                    <thead>
-                                        <tr>
-
-                                            <th></th>
-                                            <th>Shapire</th>
-                                            <th>Emerald</th>
-                                            <th>Diamond</th>
-                                            <th>Gold</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-
-                                        <tr>
-                                            <td>5R (3bh)+Album</td>
-                                            <td></td>
-                                            <td><input type="file" id="gambar" name="fupload" /></td>
-                                            <td><input type="file" id="gambar_diamon" name="fuploadd" /></td>
-                                            <td><input type="file" name="gambar" /></td>    
-                                        </tr>
-
-                                        <tr>
-                                            <td>10 R+</td>
-                                            <td><input type="file" name="gambar" /></td>
-                                            <td><input type="file" name="gambar" /></td>
-                                            <td><input type="file" name="gambar" /></td>
-                                            <td><input type="file" name="gambar" /></td>
-
-                                        </tr>
-
-                                        <td>16 R+</td>
-                                        <td><input type="file" name="gambar" /></td>
-                                        <td><input type="file" name="gambar" /></td>
-                                        <td><input type="file" name="gambar" /></td>
-                                        <td><input type="file" name="gambar" /></td>
-
-
-                                        </tr>
-
-                                        <td width="150">20 R+</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="file" name="gambar" /></td>
-                                        <td><input type="file" name="gambar" /></td>
-                                        </tr>
-
-                                        <td width="150">24 R+</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="file" name="gambar" /></td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <input style="width:150px" type="submit" class="btn btn-primary btn-lg btn-submit" name="wedding" value="UPLOAD">
