@@ -146,6 +146,11 @@ else {
 		include "modules/foto/detail.php";
 	}
 
+	// jika halaman konten yang dipilih detail, panggil file view detail
+	elseif ($_GET['module'] == 'hapus') {
+		include "modules/foto/hapus.php";
+	}
+
 	// jika halaman konten yang dipilih password, panggil file view password
 	elseif ($_GET['module'] == 'password') {
 		include "modules/password/view.php";

@@ -206,6 +206,9 @@
 												<a data-rel="tooltip" data-placement="top" title="Lihat Foto" style="margin-right:5px" class="blue tooltip-info" href="?module=detail&id=<?php echo $data['id_konsumen']; ?>">
 													<i class="ace-icon fa fa-search bigger-130"></i>
 												</a>
+												<a data-rel="tooltip" data-placement="top" title="Lihat Foto" style="margin-right:5px" class="blue tooltip-info" href="?module=hapus&id=<?php echo $data['id_upload']; ?>">
+													<i class="ace-icon fa fa-trash bigger-130"></i>
+												</a>
 											</div>
 										</td>
 										</td>
